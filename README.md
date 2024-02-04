@@ -9,10 +9,11 @@ Start a new game by initializing the `WordGuesser` class. If you have an answer 
 ```python
 from src.game import WordGuesser
 
-game = WordGuesser(answer="storm")
-
+game = WordGuesser(answer="storm", print_enabled=False)
 while not game.game_over:
     game.guess_word(game.suggest_word(method="highest_frequency"))
+
+game.print()
 ```
 
 ![Alt text](figures/storm.png)
