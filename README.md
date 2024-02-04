@@ -21,7 +21,7 @@ while not game.game_over:
 
 In the example above, I use the `suggest_word()` method to generate the next logical input based on available information (accessible via `game.info`).
 
-```json
+```
 {
     'positions': {
         0: {
