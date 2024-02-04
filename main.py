@@ -1,7 +1,7 @@
-from src.game import WordGuesser
+from src.game import WordGuesser, WordGuesserAssist
 
-game = WordGuesser()
-game.guess_word("tears")
+game = WordGuesser(print_enabled=False)
+while not game.game_over:
+    game.guess_word(game.suggest_word(method="highest_frequency"))
 
-game.suggest_word(method="random")
-print(game.possible_answers)
+game.print()
