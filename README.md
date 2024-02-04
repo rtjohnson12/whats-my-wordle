@@ -60,6 +60,7 @@ from src.game import WordGuesserAssist
 
 assist = WordGuesserAssist()
 
+assist.suggest_word(method="highest_frequency") # "slate"
 assist.new_guess("slate", colors=("", "", "", "", "green"))
 
 assist.suggest_word(method="highest_frequency") # "price"
