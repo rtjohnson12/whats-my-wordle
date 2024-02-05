@@ -12,13 +12,14 @@ logging.basicConfig(level=logging.WARN)
 valid_solutions, valid_guesses = get_wordsets()
 
 class WordGuesser:
-    def __init__(self, answer="", print_enabled=True, **kwargs):
+    def __init__(self, answer="", print_enabled=True, quick_game=False, **kwargs):
         self.__dict__.update(kwargs)
         self.print_enabled = print_enabled
         self.valid_solutions = valid_solutions
         self.valid_guesses = valid_guesses
         self.possible_answers = valid_solutions.copy()
 
+        self.quick_game = quick_game
         self.game_over = False
         self.guess_count = 0
         self.curr_info = [""] * 5
@@ -34,7 +35,8 @@ class WordGuesser:
             "does_contain": set(),
             "guesses": [],
         }
-        self.calculate_word_stats()
+        if not self.quick_game:
+            self.calculate_word_stats()
 
         self.console = Console()
         self.table = Table(
@@ -143,7 +145,8 @@ class WordGuesser:
                     if word[idx] not in self.info["positions"][idx]["miss"]
                 ]      
 
-        self.calculate_word_stats()  
+        if not self.quick_game:
+            self.calculate_word_stats()  
 
     def remove_word(self, word):
         self.info["does_not_contain"] = self.info["does_not_contain"].union(
